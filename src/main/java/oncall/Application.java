@@ -7,6 +7,9 @@ public class Application {
         String monthInput = this.getMonthInput(inputView, validator);
         String weekdayNames = this.getWeekdayNames(inputView, validator);
         String holidayNames = this.getHolidayNames(inputView, validator);
+
+        StaffQueue staffQueue = new StaffQueue(weekdayNames, holidayNames);
+        Calendar calendar = new Calendar(monthInput);
     }
 
     private String getMonthInput(InputView inputView, Validator validator) {
