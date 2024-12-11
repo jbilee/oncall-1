@@ -24,7 +24,7 @@ public class Calendar {
                 if (isDateHoliday(month, i) || isDayHoliday(day)) {
                     isHoliday = true;
                 }
-                CallInfo newCallInfo = new CallInfo(i, day, isHoliday);
+                CallInfo newCallInfo = new CallInfo(month, i, day, isHoliday);
                 this.dates.add(newCallInfo);
                 continue;
             }
@@ -32,7 +32,7 @@ public class Calendar {
             if (isDateHoliday(month, i) || isDayHoliday(day)) {
                 isHoliday = true;
             }
-            CallInfo newCallInfo = new CallInfo(i, day, isHoliday);
+            CallInfo newCallInfo = new CallInfo(month, i, day, isHoliday);
             this.dates.add(newCallInfo);
         }
     }
@@ -56,7 +56,7 @@ public class Calendar {
             CallInfo curInfo = this.dates[i];
             CallInfo prevInfo;
             if (i == 0) {
-                prevInfo = new CallInfo(0, "", false);
+                prevInfo = new CallInfo(0, 0, "", false);
                 prevInfo.updateName("null");
                 String assignedName = staffQueue.getAssignedStaff(curInfo.isHoliday, prevInfo);
                 curInfo.updateName(assignedName);
@@ -66,5 +66,12 @@ public class Calendar {
             String assignedName = staffQueue.getAssignedStaff(curInfo.isHoliday, prevInfo);
             curInfo.updateName(assignedName);
         }
+    }
+
+    public void printResults(OutputView outputView) {
+        this.dates.forEach(date -> {
+            String info = date.getPrintableInfo;
+            outputView.printInfo(info);
+        });
     }
 }

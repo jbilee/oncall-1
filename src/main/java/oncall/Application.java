@@ -10,6 +10,8 @@ public class Application {
 
         StaffQueue staffQueue = new StaffQueue(weekdayNames, holidayNames);
         Calendar calendar = new Calendar(monthInput);
+        calendar.assignStaff(staffQueue);
+        calendar.printResults();
     }
 
     private String getMonthInput(InputView inputView, Validator validator) {
