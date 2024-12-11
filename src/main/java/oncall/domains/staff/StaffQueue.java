@@ -43,10 +43,17 @@ public class StaffQueue {
 
     private String getNameAtNextIndex(CallInfo lastInfo, String type) {
         if (type.equals("weekday")) {
-            String nextName = this.weekdayNames.get(this.nextWeekdayIndex);
-            if (lastInfo.isSameName(nextName)) {
-                return this.weekdayNames.get(this.nextWeekdayIndex + 1);
+            int nextIndex = this.nextWeekdayIndex;
+            String nextName = this.weekdayNames.get(nextIndex);
+            boolean isSameName = lastInfo.isSameName(nextName);
+            while (isSameName) {
+                if (nextIndex + 1 == this.weekdayNames.size()) {
+                    nextIndex = 0;
+                }
+                nextName = this.weekdayNames.get(nextIndex);
+                isSameName = lastInfo.isSameName(nextName);
             }
+
             if (this.nextWeekdayIndex + 1 == this.weekdayNames.size()) {
                 this.nextWeekdayIndex = 0;
                 return nextName;
@@ -54,11 +61,19 @@ public class StaffQueue {
             this.nextWeekdayIndex += 1;
             return nextName;
         }
+
         if (type.equals("holiday")) {
-            String nextName = this.holidayNames.get(this.nextHolidayIndex);
-            if (lastInfo.isSameName(nextName)) {
-                return this.holidayNames.get(this.nextHolidayIndex + 1);
+            int nextIndex = this.nextHolidayIndex;
+            String nextName = this.holidayNames.get(nextIndex);
+            boolean isSameName = lastInfo.isSameName(nextName);
+            while (isSameName) {
+                if (nextIndex + 1 == this.holidayNames.size()) {
+                    nextIndex = 0;
+                }
+                nextName = this.holidayNames.get(nextIndex);
+                isSameName = lastInfo.isSameName(nextName);
             }
+
             if (this.nextHolidayIndex + 1 == this.holidayNames.size()) {
                 this.nextHolidayIndex = 0;
                 return nextName;
