@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Calendar {
-    private List<CallInfo> dates = new ArrayList<>();
-    private Map<String, List<Integer>> holidays = Map.of("1", List.of(1), "3", List.of(1), "5", List.of(5), "6", List.of(6), "8", List.of(15), "10", List.of(3, 9), "12", List.of(25));
+    private final List<CallInfo> dates = new ArrayList<>();
+    private final Map<String, List<Integer>> holidays = Map.of("1", List.of(1), "3", List.of(1), "5", List.of(5), "6", List.of(6), "8", List.of(15), "10", List.of(3, 9), "12", List.of(25));
 
     public Calendar(String input) {
         this.init(input);
@@ -47,7 +47,10 @@ public class Calendar {
 
     private boolean isDateHoliday(int month, int date) {
         List<Integer> holidayDates = this.holidays.get(String.valueOf(month));
-        return holidayDates.contains(date);
+        if (holidayDates != null) {
+            return holidayDates.contains(date);
+        }
+        return false;
     }
 
     private boolean isDayHoliday(String day) {
