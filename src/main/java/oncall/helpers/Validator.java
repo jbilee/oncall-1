@@ -23,4 +23,16 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessages.INVALID.getMessage());
         }
     }
+
+    public void checkNames(String input) {
+        List<String> names = input.split(DELIMITER).stream().toList();
+        names.forEach(name -> {
+            if (name.length > 5) {
+                throw new IllegalArgumentException(ErrorMessages.INVALID.getMessage());
+            }
+            if (names.firstIndexOf(name) != names.lastIndexOf(name)) {
+                throw new IllegalArgumentException(ErrorMessages.INVALID.getMessage());
+            }
+        });
+    }
 }
