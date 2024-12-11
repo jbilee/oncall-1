@@ -1,10 +1,12 @@
 package oncall.domains.calendar;
 
+import oncall.domains.calendar.constants.CalendarUi;
+
 public class CallInfo {
     private final int month;
     private final int date;
     private final String day;
-    private final boolean isHoliday;
+    public final boolean isHoliday;
     private String staff;
 
     public CallInfo(int month, int date, String day, boolean isHoliday) {

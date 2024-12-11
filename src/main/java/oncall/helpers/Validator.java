@@ -1,5 +1,10 @@
 package oncall.helpers;
 
+import oncall.ui.constants.ErrorMessages;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class Validator {
     private final static String DELIMITER = ",";
 
@@ -25,12 +30,12 @@ public class Validator {
     }
 
     public void checkNames(String input) {
-        List<String> names = input.split(DELIMITER).stream().toList();
+        List<String> names = Arrays.stream(input.split(DELIMITER)).toList();
         names.forEach(name -> {
-            if (name.length > 5) {
+            if (name.length() > 5) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID.getMessage());
             }
-            if (names.firstIndexOf(name) != names.lastIndexOf(name)) {
+            if (names.indexOf(name) != names.lastIndexOf(name)) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID.getMessage());
             }
         });
