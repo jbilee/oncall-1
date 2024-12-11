@@ -14,10 +14,21 @@ public class Application {
         String weekdayNames = getWeekdayNames(inputView, validator);
         String holidayNames = getHolidayNames(inputView, validator);
 
-        StaffQueue staffQueue = new StaffQueue(weekdayNames, holidayNames);
+        StaffQueue staffQueue = getStaffQueue(weekdayNames, holidayNames);
         Calendar calendar = new Calendar(monthInput);
         calendar.assignStaff(staffQueue);
         calendar.printResults(new OutputView());
+
+    }
+
+    private static StaffQueue getStaffQueue(String weekdayNames, String holidayNames) {
+        while (true) {
+            try {
+                return new StaffQueue(weekdayNames, holidayNames);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static String getMonthInput(InputView inputView, Validator validator) {
