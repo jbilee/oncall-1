@@ -25,7 +25,7 @@ public class CallInfo {
     }
 
     public String getPrintableInfo() {
-        if (this.isHoliday) {
+        if (this.isHoliday && !this.day.equals("토") && !this.day.equals("일")) {
             return this.month + CalendarUi.MONTH.getText() + this.date + CalendarUi.DATE.getText() + this.day + CalendarUi.HOLIDAY.getText() + " " + this.staff;
         }
         return this.month + CalendarUi.MONTH.getText() + this.date + CalendarUi.DATE.getText() + this.day + " " + this.staff;
