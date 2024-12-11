@@ -51,5 +51,20 @@ public class Calendar {
         }
     }
 
-    private
+    public void assignStaff(StaffQueue staffQueue) {
+        for (int i = 0; i < this.dates.size(); i++) {
+            CallInfo curInfo = this.dates[i];
+            CallInfo prevInfo;
+            if (i == 0) {
+                prevInfo = new CallInfo(0, "", false);
+                prevInfo.updateName("null");
+                String assignedName = staffQueue.getAssignedStaff(curInfo.isHoliday, prevInfo);
+                curInfo.updateName(assignedName);
+                continue;
+            }
+            prevInfo = this.dates[i - 1];
+            String assignedName = staffQueue.getAssignedStaff(curInfo.isHoliday, prevInfo);
+            curInfo.updateName(assignedName);
+        }
+    }
 }
